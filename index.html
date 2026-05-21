@@ -272,9 +272,17 @@
 
     <!-- SECTION DES JEUX (GRID) -->
     <main class="projects" id="projets">
-        <h2 class="section-title">Nos Créations</h2>
+    <h2 class="section-title">Nos Créations</h2>
+    
+    <!-- CONTENEUR DU CAROUSEL -->
+    <div class="carousel-container" id="carouselContainer">
         
-        <div class="grid">
+        <!-- FLÈCHES DE NAVIGATION (Cachées par défaut) -->
+        <button class="nav-arrow prev-arrow" id="prevBtn">&larr;</button>
+        <button class="nav-arrow next-arrow" id="nextBtn">&rarr;</button>
+
+        <!-- LA GRILLE QUI VA DÉFILER -->
+        <div class="grid-scroll" id="gridScroll">
             <!-- Projet 1 -->
         <a href="https://modrinth.com/mod/blockname" target="_blank" rel="noopener noreferrer"></a>
             <article class="card glow-effect">
@@ -292,6 +300,7 @@
                     <p>BlockName affiche le nom du bloc, l'outil optimal, les enchantements utiles et des informations avancées.</p>
                 </div>
             </article>
+        </a>
 
             <!-- Projet 2 -->
             <a href="https://modrinth.com/mod/ultraenchant" target="_blank" rel="noopener noreferrer">
