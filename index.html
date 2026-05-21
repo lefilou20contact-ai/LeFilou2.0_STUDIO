@@ -414,33 +414,56 @@
         <p>&copy; 2026 LeFilou2.0 Studio. Tous droits réservés. Conçu pour les passionnés de Minecraft.</p>
     </footer>
     <script>
+    const carouselContainer = document.getElementById('carouselContainer');
     const gridScroll = document.getElementById('gridScroll');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
-    // Distance de défilement à chaque clic (la largeur d'une carte environ)
     const scrollAmount = 350; 
     let currentX = 0;
+    let isManual = false; // Permet de savoir si l'utilisateur a cliqué sur les flèches
 
     // Clic flèche droite
     nextBtn.addEventListener('click', () => {
-        // On désactive temporairement l'animation CSS pour pas qu'elle lutte avec le clic
-        gridScroll.style.animation = 'none'; 
+        isManual = true;
+        gridScroll.style.animation = 'none'; // Coupe l'auto-défilement
         currentX -= scrollAmount;
         gridScroll.style.transform = `translateX(${currentX}px)`;
-        gridScroll.style.transition = 'transform 0.4s ease-out';
+        gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
     });
 
     // Clic flèche gauche
     prevBtn.addEventListener('click', () => {
-        gridScroll.style.animation = 'none';
+        isManual = true;
+        gridScroll.style.animation = 'none'; // Coupe l'auto-défilement
         currentX += scrollAmount;
-        // Empêche de scroller trop à gauche dans le vide
         if (currentX > 0) currentX = 0; 
         gridScroll.style.transform = `translateX(${currentX}px)`;
-        gridScroll.style.transition = 'transform 0.4s ease-out';
+        gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
+
+    // --- LE CORRECTIF : QUAND LA SOURIS QUITTE LA ZONE ---
+    carouselContainer.addEventListener('mouseleave', () => {
+        if (isManual) {
+            // On efface les styles manuels (le transform et la coupure d'animation)
+            gridScroll.style.transition = 'transform 0.5s ease';
+            gridScroll.style.transform = 'translateX(0px)';
+            
+            // On attend la fin du retour à la position initiale (0.5s) pour relancer l'animation proprement
+            setTimeout(() => {
+                gridScroll.style.animation = 'scrollRight 20s linear infinite';
+                currentX = 0; // On remet le compteur manuel à zéro
+                isManual = false;
+            }, 500);
+        }
+    });
+
+    // Si l'utilisateur revient avec sa souris, on se remet en mode "pause" classique
+    carouselContainer.addEventListener('mouseenter', () => {
+        if (!isManual) {
+            gridScroll.style.animationPlayState = 'paused';
+        }
     });
 </script>
-
 </body>
 </html>
