@@ -5,6 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeFilou2.0 Studio</title>
     <style>
+       /* Le conteneur principal bloque ce qui dépasse et positionne les flèches */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+/* La ligne de cartes qui s'aligne horizontalement */
+.grid-scroll {
+    display: flex;
+    gap: 2rem;
+    width: max-content; /* Permet à la ligne de s'allonger vers la droite */
+    padding: 0 2rem;
+    
+    /* Animation de défilement automatique (20 secondes, en boucle) */
+    animation: scrollRight 20s linear infinite;
+}
+
+/* --- LE SECRET DE LA PAUSE --- */
+/* Quand la souris survole le conteneur, l'animation se met en pause ! */
+.carousel-container:hover .grid-scroll {
+    animation-play-state: paused;
+}
+
+/* Animation qui déplace les cartes vers la gauche (l'effet visuel va vers la droite) */
+@keyframes scrollRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Ajuste selon le nombre de cartes */
+}
+
+/* STYLES DES FLÈCHES */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(99, 102, 241, 0.9); /* Ton violet accent */
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    
+    /* Cachées par défaut */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.prev-arrow { left: 1rem; }
+.next-arrow { right: 1rem; }
+
+/* Quand l'utilisateur entre dans la zone, les flèches apparaissent */
+.carousel-container:hover .nav-arrow {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-arrow:hover {
+    background: var(--accent-hover);
+    scale: 1.1;
+}
         /* --- VARIABLES & THÈME EN LIGNE AVEC LA DA --- */
         :root {
             --bg-dark: #0d0e12;
