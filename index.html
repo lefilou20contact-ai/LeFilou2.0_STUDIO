@@ -421,12 +421,30 @@
 
     const scrollAmount = 350; 
     let currentX = 0;
-    let isManual = false; // Permet de savoir si l'utilisateur a cliqué sur les flèches
+    let isManual = false; 
+
+    // Fonction magique pour relancer le défilement automatique
+    function resetToAuto() {
+        gridScroll.style.transition = 'transform 0.5s ease';
+        gridScroll.style.transform = 'translateX(0px)';
+        
+        setTimeout(() => {
+            gridScroll.style.animation = 'scrollRight 20s linear infinite';
+            gridScroll.style.animationPlayState = 'running'; // On s'assure qu'elle tourne
+            currentX = 0;
+            isManual = false;
+        }, 500);
+    }
+
+    // --- FORCE LE LANCEMENT AU DÉMARRAGE ---
+    window.addEventListener('DOMContentLoaded', () => {
+        gridScroll.style.animation = 'scrollRight 20s linear infinite';
+    });
 
     // Clic flèche droite
     nextBtn.addEventListener('click', () => {
         isManual = true;
-        gridScroll.style.animation = 'none'; // Coupe l'auto-défilement
+        gridScroll.style.animation = 'none'; 
         currentX -= scrollAmount;
         gridScroll.style.transform = `translateX(${currentX}px)`;
         gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -435,30 +453,19 @@
     // Clic flèche gauche
     prevBtn.addEventListener('click', () => {
         isManual = true;
-        gridScroll.style.animation = 'none'; // Coupe l'auto-défilement
+        gridScroll.style.animation = 'none'; 
         currentX += scrollAmount;
         if (currentX > 0) currentX = 0; 
         gridScroll.style.transform = `translateX(${currentX}px)`;
         gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
     });
 
-    // --- LE CORRECTIF : QUAND LA SOURIS QUITTE LA ZONE ---
+    // Quand la souris quitte la zone : on relance l'auto
     carouselContainer.addEventListener('mouseleave', () => {
-        if (isManual) {
-            // On efface les styles manuels (le transform et la coupure d'animation)
-            gridScroll.style.transition = 'transform 0.5s ease';
-            gridScroll.style.transform = 'translateX(0px)';
-            
-            // On attend la fin du retour à la position initiale (0.5s) pour relancer l'animation proprement
-            setTimeout(() => {
-                gridScroll.style.animation = 'scrollRight 20s linear infinite';
-                currentX = 0; // On remet le compteur manuel à zéro
-                isManual = false;
-            }, 500);
-        }
+        resetToAuto();
     });
 
-    // Si l'utilisateur revient avec sa souris, on se remet en mode "pause" classique
+    // Quand la souris entre : on met juste en pause (si on n'a pas cliqué sur les flèches)
     carouselContainer.addEventListener('mouseenter', () => {
         if (!isManual) {
             gridScroll.style.animationPlayState = 'paused';
