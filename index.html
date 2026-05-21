@@ -412,6 +412,34 @@
     <footer>
         <p>&copy; 2026 LeFilou2.0 Studio. Tous droits réservés. Conçu pour les passionnés de Minecraft.</p>
     </footer>
+    <script>
+    const gridScroll = document.getElementById('gridScroll');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Distance de défilement à chaque clic (la largeur d'une carte environ)
+    const scrollAmount = 350; 
+    let currentX = 0;
+
+    // Clic flèche droite
+    nextBtn.addEventListener('click', () => {
+        // On désactive temporairement l'animation CSS pour pas qu'elle lutte avec le clic
+        gridScroll.style.animation = 'none'; 
+        currentX -= scrollAmount;
+        gridScroll.style.transform = `translateX(${currentX}px)`;
+        gridScroll.style.transition = 'transform 0.4s ease-out';
+    });
+
+    // Clic flèche gauche
+    prevBtn.addEventListener('click', () => {
+        gridScroll.style.animation = 'none';
+        currentX += scrollAmount;
+        // Empêche de scroller trop à gauche dans le vide
+        if (currentX > 0) currentX = 0; 
+        gridScroll.style.transform = `translateX(${currentX}px)`;
+        gridScroll.style.transition = 'transform 0.4s ease-out';
+    });
+</script>
 
 </body>
 </html>
