@@ -315,6 +315,52 @@
             .hero h1 { font-size: 2.5rem; }
             header { flex-direction: column; gap: 1rem; text-align: center; }
         }
+        /* --- SECTION LOGOS PARTENAIRES --- */
+        .logo-marquee-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 3rem 0;
+            background-color: transparent;
+        }
+
+        .logo-marquee-track {
+            display: flex;
+            gap: 4rem; 
+            width: max-content;
+            animation: scrollLogos 25s linear infinite;
+        }
+
+        .logo-marquee-container:hover .logo-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px; 
+            height: 60px;  
+        }
+
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
+            opacity: 0.5;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .logo-item img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        @keyframes scrollLogos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 2rem)); }
+        }
     </style>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -400,6 +446,22 @@
             </div>
         </div>
         </main>
+
+    <div class="logo-marquee-container">
+        <div class="logo-marquee-track">
+            
+            <div class="logo-item"><img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Partenaire 1"></div>
+            <div class="logo-item"><img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="Partenaire 2"></div>
+            <div class="logo-item"><img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Partenaire 3"></div>
+            <div class="logo-item"><img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="Partenaire 4"></div>
+            
+            <div class="logo-item"><img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Partenaire 1"></div>
+            <div class="logo-item"><img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="Partenaire 2"></div>
+            <div class="logo-item"><img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Partenaire 3"></div>
+            <div class="logo-item"><img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="Partenaire 4"></div>
+
+        </div>
+    </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1rem 0 3rem 0; gap: 0.6rem;">
     <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">
