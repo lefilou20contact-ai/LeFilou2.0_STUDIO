@@ -322,15 +322,21 @@
 }
         
         /* --- supprime si erreur ---*/
-        // Force le retour en haut de la page lors d'un rafraîchissement
-window.addEventListener('beforeunload', () => {
+        // On s'exécute le plus tôt possible, dès que le script est lu
+if (window.location.hash === '#projets') {
+    // 1. On remonte instantanément tout en haut avant que le navigateur ne dessine la page
     window.scrollTo(0, 0);
-});
-
-// Supprime proprement le "#projets" de l'adresse pour ne pas perturber le navigateur
-if (window.location.hash) {
+    
+    // 2. On efface proprement l'ancre de l'URL
     window.history.replaceState(null, null, window.location.pathname);
 }
+
+// Sécurité supplémentaire : au cas où le navigateur essaie quand même de tricher après le chargement complet
+window.addEventListener('load', () => {
+    if (window.scrollY > 0 && !isManual) {
+        window.scrollTo(0, 0);
+    }
+});
     </style>
 </head>
 <body>
