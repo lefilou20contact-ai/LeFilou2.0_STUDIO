@@ -5,75 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeFilou2.0 Studio</title>
     <style>
-       /* Le conteneur principal bloque ce qui dépasse et positionne les flèches */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 1rem 0;
-}
+        /* Le conteneur principal bloque ce qui dépasse et positionne les flèches */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
 
-/* La ligne de cartes qui s'aligne horizontalement */
-.grid-scroll {
-    display: flex;
-    gap: 2rem;
-    width: max-content; /* Permet à la ligne de s'allonger vers la droite */
-    padding: 0 2rem;
-    
-    /* Animation de défilement automatique (23 secondes, en boucle) */
-    animation: scrollRight 23s linear infinite;
-}
+        /* La ligne de cartes qui s'aligne horizontalement */
+        .grid-scroll {
+            display: flex;
+            gap: 2rem;
+            width: max-content; /* Permet à la ligne de s'allonger vers la droite */
+            padding: 0 2rem;
+            /* Animation de défilement automatique (23 secondes, en boucle) */
+            animation: scrollRight 23s linear infinite;
+        }
 
-/* --- LE SECRET DE LA PAUSE --- */
-/* Quand la souris survole le conteneur, l'animation se met en pause ! */
-.carousel-container:hover .grid-scroll {
-    animation-play-state: paused;
-}
+        /* --- LE SECRET DE LA PAUSE --- */
+        /* Quand la souris survole le conteneur, l'animation se met en pause ! */
+        .carousel-container:hover .grid-scroll {
+            animation-play-state: paused;
+        }
 
-/* Animation qui déplace les cartes vers la gauche (l'effet visuel va vers la droite) */
-@keyframes scrollRight {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Ajuste selon le nombre de cartes */
-}
+        /* Animation qui déplace les cartes vers la gauche (l'effet visuel va vers la droite) */
+        @keyframes scrollRight {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Ajuste selon le nombre de cartes */
+        }
 
-/* STYLES DES FLÈCHES */
-.nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(99, 102, 241, 0.9); /* Ton violet accent */
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    
-    /* Cachées par défaut */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
+        /* STYLES DES FLÈCHES */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(99, 102, 241, 0.9); /* Ton violet accent */
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            
+            /* Cachées par défaut */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
 
-.prev-arrow { left: 1rem; }
-.next-arrow { right: 1rem; }
+        .prev-arrow { left: 1rem; }
+        .next-arrow { right: 1rem; }
 
-/* Quand l'utilisateur entre dans la zone, les flèches apparaissent */
-.carousel-container:hover .nav-arrow {
-    opacity: 1;
-    pointer-events: auto;
-}
+        /* Quand l'utilisateur entre dans la zone, les flèches apparaissent */
+        .carousel-container:hover .nav-arrow {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-.nav-arrow:hover {
-    background: var(--accent-hover);
-    scale: 1.1;
-}
+        .nav-arrow:hover {
+            background: var(--accent-hover);
+            scale: 1.1;
+        }
+
         /* --- VARIABLES & THÈME EN LIGNE AVEC LA DA --- */
         :root {
             --bg-dark: #0d0e12;
@@ -319,7 +319,6 @@
 </head>
 <body>
 
-    <!-- BARRE DE NAVIGATION -->
     <header>
         <div class="logo">LeFilou2.0 Studio</div>
         <nav>
@@ -331,7 +330,6 @@
         </nav>
     </header>
 
-    <!-- SECTION PRINCIPALE (HERO) -->
     <section class="hero">
         <span class="badge">Nouveau projet en cours</span>
         <h1>Nous créons des mondes captivants.</h1>
@@ -339,160 +337,143 @@
         <a href="#projets" class="btn">Découvrir nos mods</a>
     </section>
 
-    <!-- SECTION DES JEUX (GRID) -->
     <main class="projects" id="projets">
-    <h2 class="section-title">Nos Créations</h2>
-    
-    <!-- CONTENEUR DU CAROUSEL -->
-    <div class="carousel-container" id="carouselContainer">
+        <h2 class="section-title">Nos Créations</h2>
         
-        <!-- FLÈCHES DE NAVIGATION (Cachées par défaut) -->
-        <button class="nav-arrow prev-arrow" id="prevBtn">&larr;</button>
-        <button class="nav-arrow next-arrow" id="nextBtn">&rarr;</button>
-
-        <!-- LA GRILLE QUI VA DÉFILER -->
-        <div class="grid-scroll" id="gridScroll">
-            <!-- Projet 1 -->
-        <a href="https://modrinth.com/mod/blockname" target="_blank" rel="noopener noreferrer">
-            <article class="card glow-effect">
-                <div class="card-image">
-                    <!-- Remplacer par une vraie image de jeu plus tard -->
-                    <img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Blockname Icon" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="card-content">
-                    <div class="card-tags">
-                        <span class="tag">Utilitaire</span>
-                        <span class="tag">•</span>
-                        <span class="tag">Minecraft</span>
-                    </div>
-                    <h3>Blockname</h3>
-                    <p>BlockName affiche le nom du bloc, l'outil optimal, les enchantements utiles et des informations avancées.</p>
-                </div>
-            </article>
-</a>
-
-<!-- Projet 2 -->
-            <a href="https://modrinth.com/mod/ultraenchante" target="_blank" rel="noopener noreferrer">
-            <article class="card glow-effect">
-                <div class="card-image">
-                    <img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="UltraEnchante Icon" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="card-content">
-                    <div class="card-tags">
-                        <span class="tag">Equipement</span>
-                        <span class="tag">•</span>
-                        <span class="tag">Minecraft</span>
-                    </div>
-                    <h3>UltraEnchant</h3>
-                    <p>Transforme ton Minecraft en véritable RPG avec une collection massive d'enchantements uniques.</p>
-                </div>
-            </article>
-</a>
+        <div class="carousel-container" id="carouselContainer">
             
-<!-- Projet 3 -->
-            <article class="card glow-effect">
-                <div class="card-image">
-                    <img src="https://raw.githubusercontent.com/lefilou20contact-ai/ProximiChat/1274e4871ca43fab895d116f271a2c946d488517/proximichat-logo.svg" alt="ProximiChat Icon" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="card-content">
-                    <div class="card-tags">
-                        <span class="tag">Communication</span>
-                        <span class="tag">•</span>
-                        <span class="tag">Minecraft</span>
-                    </div>
-                    <h3>ProximiChat</h3>
-                    <p>Chat vocal de proximite</p>
-                </div>
-            </article>
+            <button class="nav-arrow prev-arrow" id="prevBtn">&larr;</button>
+            <button class="nav-arrow next-arrow" id="nextBtn">&rarr;</button>
+
+            <div class="grid-scroll" id="gridScroll">
                 
+                <a href="https://modrinth.com/mod/blockname" target="_blank" rel="noopener noreferrer">
+                    <article class="card glow-effect">
+                        <div class="card-image">
+                            <img src="https://raw.githubusercontent.com/lefilou20contact-ai/Blockname_/12a5dd1fa659455577e87c5b222d039fd14565bb/icon.png" alt="Blockname Icon" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tags">
+                                <span class="tag">Utilitaire</span>
+                                <span class="tag">•</span>
+                                <span class="tag">Minecraft</span>
+                            </div>
+                            <h3>Blockname</h3>
+                            <p>BlockName affiche le nom du bloc, l'outil optimal, les enchantements utiles et des informations avancées.</p>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="https://modrinth.com/mod/ultraenchante" target="_blank" rel="noopener noreferrer">
+                    <article class="card glow-effect">
+                        <div class="card-image">
+                            <img src="https://github.com/LeFilou2-0/UltraEnchante/blob/main/icone.png?raw=true" alt="UltraEnchante Icon" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-tags">
+                                <span class="tag">Equipement</span>
+                                <span class="tag">•</span>
+                                <span class="tag">Minecraft</span>
+                            </div>
+                            <h3>UltraEnchant</h3>
+                            <p>Transforme ton Minecraft en véritable RPG avec une collection massive d'enchantements uniques.</p>
+                        </div>
+                    </article>
+                </a>
+                
+                <article class="card glow-effect">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/lefilou20contact-ai/ProximiChat/1274e4871ca43fab895d116f271a2c946d488517/proximichat-logo.svg" alt="ProximiChat Icon" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Communication</span>
+                            <span class="tag">•</span>
+                            <span class="tag">Minecraft</span>
+                        </div>
+                        <h3>ProximiChat</h3>
+                        <p>Chat vocal de proximite</p>
+                    </div>
+                </article>
+                    
+            </div>
         </div>
-    </div>
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 LeFilou2.0 Studio. Tous droits réservés. Conçu pour les passionnés de Minecraft.</p>
     </footer>
+
     <script>
-    const carouselContainer = document.getElementById('carouselContainer');
-    const gridScroll = document.getElementById('gridScroll');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+        const carouselContainer = document.getElementById('carouselContainer');
+        const gridScroll = document.getElementById('gridScroll');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
-    const scrollAmount = 350; 
-    let currentX = 0;
-    let isManual = false; 
+        const scrollAmount = 350; 
+        let currentX = 0;
+        let isManual = false;
 
-    // Fonction magique pour relancer le défilement automatique
-    function resetToAuto() {
-        gridScroll.style.transition = 'transform 0.5s ease';
-        gridScroll.style.transform = 'translateX(0px)';
-        
-        setTimeout(() => {
-            gridScroll.style.animation = 'scrollRight 20s linear infinite';
-            gridScroll.style.animationPlayState = 'running'; // On s'assure qu'elle tourne
-            currentX = 0;
-            isManual = false;
-        }, 500);
-    }
-
-    // --- FORCE LE LANCEMENT AU DÉMARRAGE ---
-    window.addEventListener('DOMContentLoaded', () => {
-        gridScroll.style.animation = 'scrollRight 20s linear infinite';
-    });
-
-    // Clic flèche droite
-    nextBtn.addEventListener('click', () => {
-        isManual = true;
-        gridScroll.style.animation = 'none'; 
-        currentX -= scrollAmount;
-        gridScroll.style.transform = `translateX(${currentX}px)`;
-        gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
-
-    // Clic flèche gauche
-    prevBtn.addEventListener('click', () => {
-        isManual = true;
-        gridScroll.style.animation = 'none'; 
-        currentX += scrollAmount;
-        if (currentX > 0) currentX = 0; 
-        gridScroll.style.transform = `translateX(${currentX}px)`;
-        gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
-
-    // Quand la souris quitte la zone : on relance l'auto
-    carouselContainer.addEventListener('mouseleave', () => {
-        resetToAuto();
-    });
-
-    // Quand la souris entre : on met juste en pause (si on n'a pas cliqué sur les flèches)
-    carouselContainer.addEventListener('mouseenter', () => {
-        if (!isManual) {
-            gridScroll.style.animationPlayState = 'paused';
+        // Fonction pour relancer le défilement automatique
+        function resetToAuto() {
+            gridScroll.style.transition = 'transform 0.5s ease';
+            gridScroll.style.transform = 'translateX(0px)';
+            
+            setTimeout(() => {
+                gridScroll.style.animation = 'scrollRight 23s linear infinite';
+                gridScroll.style.animationPlayState = 'running'; 
+                currentX = 0;
+                isManual = false;
+            }, 500);
         }
-    });
-         .game-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Recadre l'image proprement sans la déformer */
-}
-        
-        /* --- supprime si erreur ---*/
-        // On s'exécute le plus tôt possible, dès que le script est lu
-if (window.location.hash === '#projets') {
-    // 1. On remonte instantanément tout en haut avant que le navigateur ne dessine la page
-    window.scrollTo(0, 0);
-    
-    // 2. On efface proprement l'ancre de l'URL
-    window.history.replaceState(null, null, window.location.pathname);
-}
 
-// Sécurité supplémentaire : au cas où le navigateur essaie quand même de tricher après le chargement complet
-window.addEventListener('load', () => {
-    if (window.scrollY > 0 && !isManual) {
-        window.scrollTo(0, 0);
-    }
-});
-</script>
+        // FORCE LE LANCEMENT AU DÉMARRAGE
+        window.addEventListener('DOMContentLoaded', () => {
+            gridScroll.style.animation = 'scrollRight 23s linear infinite';
+        });
+
+        // Clic flèche droite
+        nextBtn.addEventListener('click', () => {
+            isManual = true;
+            gridScroll.style.animation = 'none'; 
+            currentX -= scrollAmount;
+            gridScroll.style.transform = `translateX(${currentX}px)`;
+            gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+
+        // Clic flèche gauche
+        prevBtn.addEventListener('click', () => {
+            isManual = true;
+            gridScroll.style.animation = 'none'; 
+            currentX += scrollAmount;
+            if (currentX > 0) currentX = 0; 
+            gridScroll.style.transform = `translateX(${currentX}px)`;
+            gridScroll.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+
+        // Quand la souris quitte la zone
+        carouselContainer.addEventListener('mouseleave', () => {
+            resetToAuto();
+        });
+
+        // Quand la souris entre
+        carouselContainer.addEventListener('mouseenter', () => {
+            if (!isManual) {
+                gridScroll.style.animationPlayState = 'paused';
+            }
+        });
+
+        // Gestion du reset de l'ancre au chargement
+        if (window.location.hash === '#projets') {
+            window.scrollTo(0, 0);
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+
+        window.addEventListener('load', () => {
+            if (window.scrollY > 0 && !isManual) {
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
 </body>
 </html>
