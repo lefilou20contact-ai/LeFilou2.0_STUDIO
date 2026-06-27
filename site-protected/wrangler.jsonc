@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "lefiloustudio",
   "main": "worker.js",
-  "compatibility_date": "2026-06-01",
+  "compatibility_date": "2026-05-03",
   "observability": {
     "enabled": true
   },
